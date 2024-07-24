@@ -1,0 +1,244 @@
+:root {
+    --stroke-color: #E3E3E3;
+}
+
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 85px 0;
+}
+
+form {
+    &.todo-form {
+        /* Settings  */
+        --animation-duration: 0.4s;
+
+        /* Settings  */
+
+        width: 370px;
+        min-height: 326px;
+        height: fit-content;
+        padding: 10px 0;
+        border-radius: 6px;
+        background: #FFFFFF;
+        border: 1px solid #EEEEEE;
+        box-shadow: 0px 8px 15px 0px #1414141F;
+        box-shadow: 0px 0px 4px 0px #1414141A;
+
+        hr {
+            border: 0px;
+            border-top: 0.7px solid #CDCDCD;
+            margin: 10px 15px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 12px 22px;
+                display: flex;
+
+                label {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    font-family: Montserrat;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 18.2px;
+                    text-align: left;
+                    user-select: none;
+
+                    input[type="checkbox"] {
+                        display: none;
+
+                        &:checked+.custom-checkbox {
+                            animation: checking var(--animation-duration) forwards;
+
+                            .check-mark .check-mark-path {
+                                animation: checkmark-checking-handler var(--animation-duration) forwards;
+                            }
+                        }
+
+                        &:not(:checked)+.custom-checkbox {
+                            &:not(.unchecked) {
+                                animation: unchecking var(--animation-duration) forwards;
+
+                                .check-mark {
+                                    .check-mark-path {
+                                        animation: checkmark-unchecking-handler var(--animation-duration) forwards;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .custom-checkbox {
+                    width: 23px;
+                    height: 23px;
+                    border-radius: 6px;
+                    background: #FFFFFF;
+                    border: 1px solid #CDCDCD;
+                    cursor: pointer;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    transition: .1s;
+
+                    .check-mark .check-mark-path {
+                        opacity: 0;
+                        transition: .1s;
+                        stroke: var(--stroke-color);
+                    }
+                }
+            }
+        }
+
+        .custom-button {
+            width: -webkit-fill-available;
+            padding: 10px 20px 10px 20px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 10px 15px;
+            background: #FFCE22;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18.2px;
+            text-align: center;
+            transition: .3s;
+
+            &:hover{
+                background: #FFD84D;
+            }
+        }
+
+    }
+}
+
+
+@keyframes checking {
+    0% {
+        border: 1px solid #CDCDCD;
+        background: #fff;
+    }
+
+    25% {
+        border: 1px solid #BDBDBD;
+        background: #fff;
+        box-shadow: #5087F840 0px 0px 0px 0px;
+    }
+
+    50% {
+        border: 1px solid #BDBDBD;
+        background: #fff;
+        box-shadow: #5087F840 0px 0px 0px 3px;
+    }
+
+    75% {
+        border: 1px solid #5087F8;
+        background: #5087F8;
+        box-shadow: #5087F840 0px 0px 0px 0px;
+    }
+
+    100% {
+        border: 1px solid #2469F6;
+        background: #2469F6;
+    }
+}
+
+@keyframes unchecking {
+    0% {
+        border: 1px solid #2469F6;
+        background: #2469F6;
+        box-shadow: #5087F840 0px 0px 0px 0px;
+    }
+
+    25% {
+        border: 1px solid #5087F8;
+        background: #5087F8;
+        box-shadow: #5087F840 0px 0px 0px 3px;
+    }
+
+    50% {
+        border: 1px solid #2469F6;
+        background: #2469F6;
+        box-shadow: #5087F840 0px 0px 0px 0px;
+    }
+
+    65% {
+        border: 1px solid #5087F8;
+        background: #5087F8;
+
+    }
+
+    85% {
+        border: 1px solid #BDBDBD;
+        background: #fff;
+        opacity: 1;
+    }
+
+    100% {
+        border: 1px solid #BDBDBD;
+        background: #fff;
+    }
+}
+
+@keyframes checkmark-checking-handler {
+    0% {
+        --stroke-color: #E3E3E300;
+        opacity: 0;
+    }
+
+    25% {
+        --stroke-color: #E3E3E3;
+        opacity: 1;
+    }
+
+    50% {
+        --stroke-color: #878787;
+    }
+
+    75% {
+        --stroke-color: #fff;
+    }
+
+    100% {
+        --stroke-color: #fff;
+        opacity: 1;
+    }
+
+}
+
+@keyframes checkmark-unchecking-handler {
+
+    0%,
+    50% {
+        --stroke-color: #fff;
+    }
+
+    65% {
+        --stroke-color: #E3E3E3;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        --stroke-color: #E3E3E3;
+    }
+}
